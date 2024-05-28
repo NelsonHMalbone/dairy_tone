@@ -1,19 +1,12 @@
 import streamlit as st
 import glob
-from pathlib import Path
 import plotly.express as px
-import regex as re
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
 
-# importing data using glob
+# importing data using glob and sorting paths
 filepaths = glob.glob('diary/*.txt')
-corpus = []
+filepaths_sorted = sorted(filepaths)
 
-for nr, filepath in enumerate(filepaths):
-
-    with open(filepath, "r") as file:
-        content = file.read()
-        corpus.append(content)
-print(nr + 1, corpus)
+print(filepaths_sorted)
