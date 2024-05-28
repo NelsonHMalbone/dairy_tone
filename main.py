@@ -6,7 +6,18 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
 # importing data using glob and sorting paths
-filepaths = glob.glob('diary/*.txt')
-filepaths_sorted = sorted(filepaths)
+filepaths = sorted(glob.glob('diary/*.txt'))
 
-print(filepaths_sorted)
+
+anazyler = SentimentIntensityAnalyzer()
+
+# creating empty list
+neg = []
+pos = []
+
+for filepath in filepaths:
+    with open(filepath) as file:
+        content = file.read()
+        scores = anazyler.polarity_scores(content)
+        pos.append(scores["pos"])
+        neg.append(scores["neg"])
